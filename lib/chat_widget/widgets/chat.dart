@@ -1,5 +1,4 @@
 import 'package:cognigy_flutterchat/chat_widget/helper/message_helper.dart';
-import 'package:cognigy_flutterchat/chat_widget/helper/notification_helper.dart';
 import 'package:cognigy_flutterchat/main.dart';
 import 'package:cognigy_flutterchat/chat_widget/models/message_model.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -131,7 +130,7 @@ class _ChatState extends State<Chat>
   Widget buildChatInput() {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(2.0),
+        padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
             color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(30.0)),
@@ -266,7 +265,8 @@ class _ChatState extends State<Chat>
                               color: Theme.of(context).accentColor,
                               borderRadius: BorderRadius.circular(30.0)),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
+                            padding: const EdgeInsets.only(
+                                left: 15.0, top: 15.0, bottom: 15.0),
                             child: TextField(
                               controller: textController,
                               decoration: InputDecoration.collapsed(
@@ -309,64 +309,38 @@ class _ChatState extends State<Chat>
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
     width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 15.0),
-            child: Icon(
-              Icons.brightness_1,
-              color: isConnected ? Colors.green : Colors.red,
-              size: 10,
-            ),
-          )
+    return GestureDetector(
+      onTap: () => focusNode.unfocus(),
+      child: Column(
+        children: <Widget>[
+          Expanded(
+              child: AnimatedList(
+            key: _listKey,
+            controller: scrollController,
+            initialItemCount: 0,
+            itemBuilder:
+                (BuildContext context, int index, Animation animation) {
+              return SlideTransition(
+                child: buildMessage(index),
+                position: Tween<Offset>(
+                  begin: messages[index]['sender'] == 'bot'
+                      ? Offset(-1.0, 0.0)
+                      : Offset(1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(animation),
+              );
+            },
+          )),
+          buildInputArea(),
+          !focusNode.hasFocus
+              ? SizedBox(
+                  height: 20,
+                  child: Container(
+                    color: Theme.of(context).backgroundColor,
+                  ),
+                )
+              : Container(),
         ],
-        backgroundColor: Theme.of(context).backgroundColor,
-        title: GestureDetector(
-          onTap: () => launch('https://www.cognigy.com'),
-          child: Image(
-            image: MediaQuery.of(context).platformBrightness == Brightness.dark
-                ? AssetImage('assets/images/logo_white.png')
-                : AssetImage('assets/images/logo.png'),
-            width: 200,
-          ),
-        ),
-      ),
-      body: GestureDetector(
-        onTap: () => focusNode.unfocus(),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: AnimatedList(
-              key: _listKey,
-              controller: scrollController,
-              initialItemCount: 0,
-              itemBuilder:
-                  (BuildContext context, int index, Animation animation) {
-                return SlideTransition(
-                  child: buildMessage(index),
-                  position: Tween<Offset>(
-                    begin: messages[index]['sender'] == 'bot'
-                        ? Offset(-1.0, 0.0)
-                        : Offset(1.0, 0.0),
-                    end: Offset.zero,
-                  ).animate(animation),
-                );
-              },
-            )),
-            buildInputArea(),
-            !focusNode.hasFocus
-                ? SizedBox(
-                    height: 20,
-                    child: Container(
-                      color: Theme.of(context).backgroundColor,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
       ),
     );
   }

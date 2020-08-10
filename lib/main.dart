@@ -2,7 +2,6 @@ import 'package:cognigy_flutterchat/chat_widget/theme.dart';
 import 'package:cognigy_flutterchat/chat_widget/widgets/chat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // Import required files for Cognigy.AI connection
 import 'package:flutter_simple_dependency_injection/injector.dart';
@@ -11,11 +10,6 @@ import 'package:cognigy_flutterchat/chat_widget/cognigy/dependency_injection.dar
 
 // Create Injector
 Injector injector;
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
-
-NotificationAppLaunchDetails notificationAppLaunchDetails;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +29,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: Chat(),
+      home: Scaffold(
+        appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
+        body: Chat(),
+      ),
     );
   }
 }
