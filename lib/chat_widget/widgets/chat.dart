@@ -4,7 +4,6 @@ import 'package:cognigy_flutterchat/main.dart';
 import 'package:cognigy_flutterchat/chat_widget/models/message_model.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:cognigy_flutterchat/chat_widget/cognigy/socket_service.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 
@@ -12,9 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 class Chat extends StatefulWidget {
   @override
@@ -30,7 +26,6 @@ class _ChatState extends State<Chat>
   ScrollController scrollController;
   ChatMessage cognigyMessage;
   bool isConnected;
-  AppLifecycleState appLifecycleState;
   bool isRecordingVoice;
   bool _hasSpeech;
 
@@ -53,9 +48,6 @@ class _ChatState extends State<Chat>
 
     handleCognigyConnection();
 
-    /// Request notification permissions on IOS devices
-    requestIOSPermissions(flutterLocalNotificationsPlugin);
-
     /// Check if the application is in foreground or not
     WidgetsBinding.instance.addObserver(this);
 
@@ -70,13 +62,6 @@ class _ChatState extends State<Chat>
     /// Clean up the focus node when the Form is disposed.
     focusNode.dispose();
     super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() {
-      appLifecycleState = state;
-    });
   }
 
   /// Initialize user voice input
@@ -133,14 +118,6 @@ class _ChatState extends State<Chat>
           socket.on('output', (cognigyResponse) {
             // process the cognigy output message
             cognigyMessage = processCognigyMessage(cognigyResponse);
-
-            try {
-              if (appLifecycleState.index == 1 ||
-                  appLifecycleState.index == 2) {
-                showNotification(
-                    cognigyMessage.text, flutterLocalNotificationsPlugin);
-              }
-            } catch (_) {}
 
             if (cognigyMessage != null) {
               addMessageToChat(cognigyMessage, 'bot');
@@ -447,13 +424,13 @@ class _ChatState extends State<Chat>
               data: text,
               defaultTextStyle: TextStyle(
                   color: sender == 'bot'
-                      ? Theme.of(context).textTheme.body1.color
+                      ? Theme.of(context).textTheme.bodyText2.color
                       : Colors.grey[900],
-                  fontSize: Theme.of(context).textTheme.body1.fontSize),
+                  fontSize: Theme.of(context).textTheme.bodyText2.fontSize),
               shrinkToFit: true,
               linkStyle: TextStyle(
-                  color: Theme.of(context).textTheme.body1.color,
-                  decorationColor: Theme.of(context).textTheme.body1.color,
+                  color: Theme.of(context).textTheme.bodyText2.color,
+                  decorationColor: Theme.of(context).textTheme.bodyText2.color,
                   decoration: TextDecoration.underline,
                   fontWeight: FontWeight.w600),
               onLinkTap: (url) {
@@ -502,11 +479,12 @@ class _ChatState extends State<Chat>
               ),
               child: Html(
                 data: text,
-                defaultTextStyle: Theme.of(context).textTheme.body1,
+                defaultTextStyle: Theme.of(context).textTheme.bodyText2,
                 shrinkToFit: true,
                 linkStyle: TextStyle(
-                    color: Theme.of(context).textTheme.body1.color,
-                    decorationColor: Theme.of(context).textTheme.body1.color,
+                    color: Theme.of(context).textTheme.bodyText2.color,
+                    decorationColor:
+                        Theme.of(context).textTheme.bodyText2.color,
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w600),
                 onLinkTap: (url) {
@@ -581,14 +559,15 @@ class _ChatState extends State<Chat>
                                       children: <Widget>[
                                         Text(
                                           elements[itemIndex]['title'],
-                                          style:
-                                              Theme.of(context).textTheme.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline6,
                                         ),
                                         Text(
                                           elements[itemIndex]['subtitle'],
                                           style: Theme.of(context)
                                               .textTheme
-                                              .subtitle,
+                                              .subtitle2,
                                         )
                                       ],
                                     )),
@@ -690,11 +669,12 @@ class _ChatState extends State<Chat>
             ),
             child: Html(
                 data: buttonText,
-                defaultTextStyle: Theme.of(context).textTheme.body1,
+                defaultTextStyle: Theme.of(context).textTheme.bodyText2,
                 shrinkToFit: true,
                 linkStyle: TextStyle(
-                    color: Theme.of(context).textTheme.body1.color,
-                    decorationColor: Theme.of(context).textTheme.body1.color,
+                    color: Theme.of(context).textTheme.bodyText2.color,
+                    decorationColor:
+                        Theme.of(context).textTheme.bodyText2.color,
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w600)),
           ),

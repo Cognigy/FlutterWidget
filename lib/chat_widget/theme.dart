@@ -15,12 +15,12 @@ ThemeData lightTheme = ThemeData(
   // Define the default TextTheme. Use this to specify the default
   // text styling for headlines, titles, bodies of text, and more.
   textTheme: TextTheme(
-    headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-    title: TextStyle(
+    headline5: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+    headline6: TextStyle(
         fontSize: 20.0, fontWeight: FontWeight.w700, color: Colors.white),
-    subtitle: TextStyle(
+    subtitle2: TextStyle(
         fontSize: 15.0, fontWeight: FontWeight.w600, color: Colors.white),
-    body1:
+    bodyText2:
         TextStyle(fontSize: 15.0, fontFamily: 'Helvetica', color: Colors.white),
   ),
 );
@@ -38,12 +38,12 @@ ThemeData darkTheme = ThemeData(
   // Define the default TextTheme. Use this to specify the default
   // text styling for headlines, titles, bodies of text, and more.
   textTheme: TextTheme(
-    headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-    title: TextStyle(
+    headline5: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+    headline6: TextStyle(
         fontSize: 20.0, fontWeight: FontWeight.w700, color: Colors.white),
-    subtitle: TextStyle(
+    subtitle2: TextStyle(
         fontSize: 15.0, fontWeight: FontWeight.w600, color: Colors.white),
-    body1:
+    bodyText2:
         TextStyle(fontSize: 15.0, fontFamily: 'Helvetica', color: Colors.white),
   ),
 );
