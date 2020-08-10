@@ -1,9 +1,8 @@
-import 'package:cognigy_flutter_client/models/message_model.dart';
+import 'package:cognigy_flutterchat/models/message_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 /// Gets Cognigy.AI message information.
-/// 
+///
 /// This application uses the Webchat tab in the Say node to create template messages such as Gallery items or Images.
 /// For plain text messages, use the Default tab in the Say node.
 ChatMessage processCognigyMessage(dynamic cognigyResponse) {

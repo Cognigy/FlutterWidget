@@ -1,9 +1,9 @@
-import 'package:cognigy_flutter_client/helper/message_helper.dart';
-import 'package:cognigy_flutter_client/helper/notification_helper.dart';
-import 'package:cognigy_flutter_client/main.dart';
-import 'package:cognigy_flutter_client/models/message_model.dart';
+import 'package:cognigy_flutterchat/helper/message_helper.dart';
+import 'package:cognigy_flutterchat/helper/notification_helper.dart';
+import 'package:cognigy_flutterchat/main.dart';
+import 'package:cognigy_flutterchat/models/message_model.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:cognigy_flutter_client/cognigy/socket_service.dart';
+import 'package:cognigy_flutterchat/cognigy/socket_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -279,9 +279,7 @@ class _ChatPageState extends State<ChatPage>
               ? Column(
                   key: ValueKey<bool>(isRecordingVoice),
                   children: <Widget>[
-                    SizedBox(
-                      height: 20
-                    ),
+                      SizedBox(height: 20),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Container(
