@@ -5,5 +5,5 @@ This project implements a mobile chat widget to show how to connect your [Cognig
 # Contents
 
 - [Get Started](./docs/get-started.md)
-- Examples
+- [Examples](./docs/examples.md)
 
