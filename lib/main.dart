@@ -20,26 +20,6 @@ NotificationAppLaunchDetails notificationAppLaunchDetails;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  notificationAppLaunchDetails =
-      await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-
-  var initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
-  // Note: permissions aren't requested here just to demonstrate that can be done later using the `requestPermissions()` method
-  // of the `IOSFlutterLocalNotificationsPlugin` class
-  var initializationSettingsIOS = IOSInitializationSettings(
-    requestAlertPermission: false,
-    requestBadgePermission: false,
-    requestSoundPermission: false,
-  );
-  var initializationSettings = InitializationSettings(
-      initializationSettingsAndroid, initializationSettingsIOS);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-      onSelectNotification: (String payload) async {
-    if (payload != null) {
-      debugPrint('[Push Notification] payload was: $payload');
-    }
-  });
-
   DependencyInjection().initialise(Injector.getInjector());
   injector = Injector.getInjector();
   await AppInitializer().initialise(injector);
