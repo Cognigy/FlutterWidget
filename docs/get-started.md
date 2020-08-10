@@ -10,6 +10,6 @@ Create a [Socket Endpoint](https://docs.cognigy.com/docs/deploy-a-socket-endpoin
 
 There are two steps required to add the chat widget to your own Flutter mobile application:
 
-1. Copy the [Chat Widget Code](../lib/chat_wiget/) to your Flutter project
+1. Copy the [Chat Widget Code](../lib/chat_widget/) to your Flutter project
 2. Add the [Dependencies](../pubspec.yaml) to your **pubspec.yaml** file
 3. Run `pub get` to install everything
