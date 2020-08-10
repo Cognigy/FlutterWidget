@@ -1,6 +1,6 @@
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:uuid/uuid.dart';
-import 'package:cognigy_flutter_client/cognigy/config.dart' as config;
+import 'package:cognigy_flutterchat/chat_widget/cognigy/config.dart' as config;
 
 class SocketService {
   IO.Socket socket;
@@ -28,7 +28,7 @@ class SocketService {
     }
   }
 
-  /// Creates the socket.io connection to Cognigy.AI 
+  /// Creates the socket.io connection to Cognigy.AI
   Future<IO.Socket> createSocketConnection() async {
     print("[SocketClient] try to connect to Cognigy.AI");
 

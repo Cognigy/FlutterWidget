@@ -1,9 +1,9 @@
-import 'package:cognigy_flutterchat/helper/message_helper.dart';
-import 'package:cognigy_flutterchat/helper/notification_helper.dart';
+import 'package:cognigy_flutterchat/chat_widget/helper/message_helper.dart';
+import 'package:cognigy_flutterchat/chat_widget/helper/notification_helper.dart';
 import 'package:cognigy_flutterchat/main.dart';
-import 'package:cognigy_flutterchat/models/message_model.dart';
+import 'package:cognigy_flutterchat/chat_widget/models/message_model.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:cognigy_flutterchat/cognigy/socket_service.dart';
+import 'package:cognigy_flutterchat/chat_widget/cognigy/socket_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +16,12 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-class ChatPage extends StatefulWidget {
+class Chat extends StatefulWidget {
   @override
-  _ChatPageState createState() => new _ChatPageState();
+  _ChatState createState() => new _ChatState();
 }
 
-class _ChatPageState extends State<ChatPage>
+class _ChatState extends State<Chat>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   FocusNode focusNode;
   List messages;

@@ -1,5 +1,5 @@
 import 'package:flutter_simple_dependency_injection/injector.dart';
-import 'package:cognigy_flutterchat/cognigy/socket_service.dart';
+import 'package:cognigy_flutterchat/chat_widget/cognigy/socket_service.dart';
 
 /// Create an Instance of the class to use it everywhere.
 class DependencyInjection {
