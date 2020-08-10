@@ -4,7 +4,7 @@ This project implements a mobile chat widget to show how to connect your [Cognig
 
 **Example**:
 
-<image src="./docs/1.png" width="20%">
+<image src="./docs/1.png" width="50%">
 
 ## Install Application & Run Application
 
