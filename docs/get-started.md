@@ -4,7 +4,7 @@ The used framework for this client is [Flutter](https://flutter.dev). In order t
 
 **[Get Started with Flutter](https://flutter.dev/docs/get-started/install)**
 
-Create a [Socket Endpoint](https://docs.cognigy.com/docs/deploy-a-socket-endpoint) in your Cognigy.AI project. The `Endpoint URL` and `URLToken` need to be inserted into the [Configuration File](./lib/cognigy/config.dart). Inside Cognigy, please use the **Webchat** Tab in the SAY Node for template content messages, such as images or quick replies.
+Create a [Socket Endpoint](https://docs.cognigy.com/docs/deploy-a-socket-endpoint) in your Cognigy.AI project. The `Endpoint URL` and `URLToken` need to be inserted into the [Configuration File](./lib/chat_widget/cognigy/config.dart). Inside Cognigy, please use the **Webchat** Tab in the SAY Node for template content messages, such as images or quick replies.
 
 ## Add To Your Application
 
