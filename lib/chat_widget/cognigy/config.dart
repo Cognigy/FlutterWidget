@@ -7,5 +7,6 @@
 /// 4. Hard reload the flutter application
 /// 5. The green dot at the top right corner should be green (connected)
 
-final String socketUrl = 'https://endpoint-internal.cognigy.ai/';
-final String urlToken = '849de509618869b1cf5d14855354b7b81ceb43bd5f5d4a6e72080ddaed9bc3ea';
+final String socketUrl = 'https://endpoint-trial.cognigy.ai/';
+final String urlToken =
+    '9f1a8e84514d41f42d4a83d9775ac8d02eb93f6f936b9c35ed1b61ee49a901de';

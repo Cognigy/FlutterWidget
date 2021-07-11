@@ -25,12 +25,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cognigy Demo',
+      title: 'Cognigy.AI',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: theme,
       home: Scaffold(
-        appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
+        appBar: PreferredSize(
+            preferredSize: Size.fromHeight(5.0), // here the desired height
+            child: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                brightness: Brightness.light)),
+        // appBar: AppBar(elevation: 0, backgroundColor: Colors.white),
         body: Chat(),
       ),
     );

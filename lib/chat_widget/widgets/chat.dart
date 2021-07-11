@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cognigy_flutterchat/chat_widget/helper/message_helper.dart';
 import 'package:cognigy_flutterchat/main.dart';
 import 'package:cognigy_flutterchat/chat_widget/models/message_model.dart';
@@ -26,7 +28,7 @@ class _ChatState extends State<Chat>
   ChatMessage cognigyMessage;
   bool isConnected;
   bool isRecordingVoice;
-  bool _hasSpeech;
+  bool hasSpeech;
 
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
   final SocketService socketService = injector.get<SocketService>();
@@ -42,7 +44,7 @@ class _ChatState extends State<Chat>
     scrollController = ScrollController();
     isConnected = false;
     isRecordingVoice = false;
-    _hasSpeech = false;
+    hasSpeech = false;
     focusNode = FocusNode();
 
     handleCognigyConnection();
@@ -74,7 +76,7 @@ class _ChatState extends State<Chat>
 
     if (!mounted) return;
     setState(() {
-      _hasSpeech = hasSpeech;
+      hasSpeech = hasSpeech;
     });
   }
 
@@ -138,6 +140,7 @@ class _ChatState extends State<Chat>
           padding: const EdgeInsets.only(left: 15.0),
           child: TextField(
             showCursor: true,
+            maxLines: null,
             cursorRadius: Radius.circular(30),
             cursorColor: Theme.of(context).primaryColor,
             focusNode: focusNode,
@@ -192,7 +195,7 @@ class _ChatState extends State<Chat>
       child: Icon(
         Icons.send,
         size: 30,
-        color: textController.text == '' ? Colors.black12 : Colors.black,
+        color: Colors.black12,
       ),
     );
   }
@@ -221,7 +224,7 @@ class _ChatState extends State<Chat>
       child: Icon(
         isRecordingVoice ? Icons.mic_off : Icons.mic,
         size: 30,
-        color: isRecordingVoice ? Colors.black : Colors.black12,
+        color: Colors.black12,
       ),
     );
   }
@@ -323,7 +326,7 @@ class _ChatState extends State<Chat>
               ? SizedBox(
                   height: 20,
                   child: Container(
-                    color: Theme.of(context).backgroundColor,
+                    color: Colors.transparent,
                   ),
                 )
               : Container(),
