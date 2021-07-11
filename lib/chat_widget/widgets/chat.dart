@@ -146,20 +146,6 @@ class _ChatState extends State<Chat>
             autofocus: false,
             autocorrect: true,
             enableSuggestions: true,
-            // onChanged: (value) {
-            //   print(value);
-            //   setState(() {
-            //     textController.text = value;
-            //   });
-
-            //   /// Set the cursor position
-            //   String text = textController.text;
-            //   textController.value = textController.value.copyWith(
-            //       text: text,
-            //       selection: TextSelection(
-            //           baseOffset: text.length, extentOffset: text.length),
-            //       composing: TextRange.empty);
-            // },
             onEditingComplete: () {
               /// Check if the textfield has text or not
               if (textController.text.isNotEmpty) {
